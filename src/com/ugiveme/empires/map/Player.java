@@ -10,25 +10,51 @@ import com.ugiveme.graphicsengine.spritesheet.SpriteSheet;
 
 public class Player extends Mob{
 
-	public static final Image PLAYERIMAGE = SpriteSheet.loadImage("images/SpriteSheetSimple.png", 0, 0, 7, 14, 4);
+	public static final Image[][] PLAYERTILESET = SpriteSheet.loadImages("images/PlayerAnimated.png", 15, 28, 4, 5, 2);
 	
-	public static final int XOFFSET = Game.size.width/2 - PLAYERIMAGE.getWidth(null)/2;
-	public static final int YOFFSET = Game.size.height/2 - PLAYERIMAGE.getHeight(null)/2;
+	public static final int PLAYERWIDTH = PLAYERTILESET[0][0].getWidth(null);
+	public static final int PLAYERHEIGHT = PLAYERTILESET[0][0].getHeight(null);
+	
+	public static final int XOFFSET = Game.size.width/2 - PLAYERWIDTH/2;
+	public static final int YOFFSET = Game.size.height/2 - PLAYERHEIGHT/2;
 	
 	public static final String UPKEY = "w";
 	public static final String DOWNKEY = "s";
 	public static final String LEFTKEY = "a";
 	public static final String RIGHTKEY = "d";
 	
+	
+	public static final int UP = 0;
+	public static final int DOWN = 1;
+	public static final int LEFT = 2;
+	public static final int RIGHT = 3;
+	
+	public int direction = DOWN;
+	
+	public int picNum;
+	public int picDir;
+	
+	public int newPicTime;
+	public int newPicFrame;
+	
 	private KeyHandler keyHandler;
 	
 	private double speed;
+	private boolean isMoving;
+	
+	
 	
 	public Player(Map map, KeyHandler keyHandler) {
-		super(map, PLAYERIMAGE, 20, 0, 0, PLAYERIMAGE.getWidth(null), PLAYERIMAGE.getHeight(null));
+		super(map, PLAYERTILESET[DOWN][2], 20, 0, 0, PLAYERWIDTH, PLAYERHEIGHT);
 		this.keyHandler = keyHandler;
 		
-		speed = 10;
+		this.speed = 7;
+		
+		this.picNum = 0;
+		this.picDir = 1;
+		
+		this.newPicTime = 6;
+		this.newPicFrame = 0;
 	}
 	
 	public void tick() {
@@ -38,22 +64,44 @@ public class Player extends Mob{
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(PLAYERIMAGE, XOFFSET, YOFFSET, null);
+		g.drawImage(PLAYERTILESET[direction][picNum], XOFFSET, YOFFSET, null);
 	}
 
 	@Override
 	public void move() {
-		if (keyHandler.isPressed(UPKEY)) {
-			y -= speed;
-		}
-		if (keyHandler.isPressed(DOWNKEY)) {
-			y += speed;
-		}
+		isMoving = false;
 		if (keyHandler.isPressed(LEFTKEY)) {
 			x -= speed;
+			direction = LEFT;
+			isMoving = true;
 		}
 		if (keyHandler.isPressed(RIGHTKEY)) {
 			x += speed;
+			direction = RIGHT;
+			isMoving = true;
+		}
+		if (keyHandler.isPressed(UPKEY)) {
+			y -= speed;
+			direction = UP;
+			isMoving = true;
+		}
+		if (keyHandler.isPressed(DOWNKEY)) {
+			y += speed;
+			direction = DOWN;
+			isMoving = true;
+		}
+		
+		if (isMoving) {
+			if (newPicFrame >= newPicTime) {
+				picNum += picDir;
+				if (picNum == PLAYERTILESET[0].length - 1 || picNum == 0) {
+					picDir = -picDir;
+				}
+				
+				newPicFrame = 0;
+			} else {
+				newPicFrame++;
+			}
 		}
 	}
 	

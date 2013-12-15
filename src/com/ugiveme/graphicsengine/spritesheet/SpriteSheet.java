@@ -46,4 +46,22 @@ public class SpriteSheet {
 		Image image = loadImage(url);
 		return image.getScaledInstance(image.getWidth(null)*scale, image.getHeight(null)*scale, BufferedImage.SCALE_DEFAULT);
 	}
+	
+	public static Image[][] loadImages(String url, int width, int height, int numH, int numV, int scale) {
+		
+		BufferedImage image = loadImage(url);
+		
+		Image[][] images = new Image[numH][numV];
+		
+		for (int i=0;i<numH;i++) {
+			for (int k=0;k<numV;k++) {
+				System.out.println("doing " + (i*height) + " " + k);
+
+				images[i][k] = image.getSubimage(k*width, i*height, width, height).getScaledInstance(width*scale, height*scale, BufferedImage.SCALE_DEFAULT);
+			}
+		}
+		
+		return images;
+		
+	}
 }

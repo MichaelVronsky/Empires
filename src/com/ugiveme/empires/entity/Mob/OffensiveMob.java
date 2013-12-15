@@ -20,6 +20,19 @@ public abstract class OffensiveMob extends Mob{
 	
 	private int speed;
 	
+	/**
+	 * 
+	 * The offensive mob class defines any offensive mob, like the zombie. 
+	 * They follow the player if he is in range
+	 * 
+	 * @param map The map it is rendered on
+	 * @param image the image to be rendered with
+	 * @param health health
+	 * @param x x (not including offset)
+	 * @param y y (not including offset)
+	 * @param width the width of the mob
+	 * @param height the height of the mob
+	 */
 	public OffensiveMob(Map map, Image image, int health, float x, float y,
 			int width, int height) {
 		super(map, image, health, x, y, width, height);
@@ -28,7 +41,7 @@ public abstract class OffensiveMob extends Mob{
 		targetMobInRange = false;
 		//temporarily it is always player. might change
 		
-		speed = 5;
+		speed = 1;
 	}
 	
 	@Override
