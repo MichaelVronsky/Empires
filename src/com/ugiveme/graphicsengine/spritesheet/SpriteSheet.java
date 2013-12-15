@@ -55,8 +55,6 @@ public class SpriteSheet {
 		
 		for (int i=0;i<numH;i++) {
 			for (int k=0;k<numV;k++) {
-				System.out.println("doing " + (i*height) + " " + k);
-
 				images[i][k] = image.getSubimage(k*width, i*height, width, height).getScaledInstance(width*scale, height*scale, BufferedImage.SCALE_DEFAULT);
 			}
 		}
