@@ -31,7 +31,7 @@ public abstract class Mob extends Entity{
 	
 	public abstract void move();
 	
-	public void hurt(int damage, Mob mob) {
+	public void hurt(int damage) {
 		
 		health -= damage;
 		
@@ -39,7 +39,7 @@ public abstract class Mob extends Entity{
 			dead = true;
 		}
 		
-		makeDamageIndicator(damage, mob);
+		makeDamageIndicator(damage, this);
 		
 	}
 	

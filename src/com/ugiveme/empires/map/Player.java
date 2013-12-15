@@ -102,6 +102,8 @@ public class Player extends Mob{
 			} else {
 				newPicFrame++;
 			}
+		} else {
+			picNum = 2;
 		}
 	}
 	

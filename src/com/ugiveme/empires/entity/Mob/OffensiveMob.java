@@ -10,6 +10,8 @@ public abstract class OffensiveMob extends Mob{
 
 	public static final int RANGERADIUS = Tile.SIZE*20;
 	//The block radius in which it goes towards the target mob
+	public static final int DAMAGERADIUS = 20;
+	
 	
 	private Mob targetMob;
 	
@@ -19,6 +21,9 @@ public abstract class OffensiveMob extends Mob{
 	private float dy;
 	
 	private int speed;
+	
+	private int damageFrame;
+	private int damageTime;
 	
 	/**
 	 * 
@@ -42,11 +47,14 @@ public abstract class OffensiveMob extends Mob{
 		//temporarily it is always player. might change
 		
 		speed = 1;
+		
+		this.damageFrame = 30;
+		this.damageTime = 0;
 	}
 	
 	@Override
 	public void tick() {
-		if (targetMob != null) {
+		if (targetMob != null && !targetMob.isDead()) {
 			if (Math.abs(targetMob.x - x) < RANGERADIUS && Math.abs(targetMob.y - y) < RANGERADIUS) {
 				targetMobInRange = true;
 			} else {
@@ -59,7 +67,14 @@ public abstract class OffensiveMob extends Mob{
 				
 				dx = (float) Math.sin(Math.toRadians(angle))*speed;
 				dy = (float) Math.cos(Math.toRadians(angle))*speed;
-				System.out.println("player is here");
+			}
+			
+			
+			if (Math.abs(targetMob.x - x) < DAMAGERADIUS && Math.abs(targetMob.y - y) < DAMAGERADIUS) {
+				if (++damageTime >= damageFrame) {
+					targetMob.hurt(1);
+					damageTime = 0;
+				}
 			}
 			
 		} else {
@@ -70,6 +85,8 @@ public abstract class OffensiveMob extends Mob{
 			
 			
 		}
+		
+		
 	}
 	
 	@Override

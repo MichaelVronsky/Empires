@@ -130,7 +130,7 @@ public class Map {
 		//checks if the mouse is over the buy dialogue
 		mouseOverSBR = false;
 		if (selectedBuyRect != null){
-			if (selectedBuyRect.contains(keyHandler.getMousePos())) {
+			if (new Rectangle(selectedBuyRect.x + mapXOffset, selectedBuyRect.y + mapYOffset, selectedBuyRect.width, selectedBuyRect.height).contains(keyHandler.getMousePos())) {
 				mouseOverSBR = true;
 			}
 		} else {
@@ -159,7 +159,7 @@ public class Map {
 				} else {
 					//if the tile is not owned, show the buy dialogue
 					selectedBuyTile = selectedTile;
-					selectedBuyRect = new Rectangle(mapXOffset + selectedBuyTile.mapX + Tile.SIZE + 20, mapYOffset + selectedBuyTile.mapY + ((Tile.SIZE-30)/2), 150, 30);
+					selectedBuyRect = new Rectangle(selectedBuyTile.mapX + Tile.SIZE + 20, selectedBuyTile.mapY + ((Tile.SIZE-30)/2), 150, 30);
 				}
 			}
 			keyHandler.setMouseClicked(false);
@@ -206,11 +206,11 @@ public class Map {
 			} else {
 				g.setColor(new Color(250, 125, 0));
 			}
-			g.fillRect(selectedBuyRect.x, selectedBuyRect.y, selectedBuyRect.width, selectedBuyRect.height);
+			g.fillRect(selectedBuyRect.x + mapXOffset, selectedBuyRect.y + mapYOffset, selectedBuyRect.width, selectedBuyRect.height);
 			g.setColor(Color.BLACK);
-			g.drawRect(selectedBuyRect.x, selectedBuyRect.y, selectedBuyRect.width, selectedBuyRect.height);
+			g.drawRect(selectedBuyRect.x + mapXOffset, selectedBuyRect.y + mapYOffset, selectedBuyRect.width, selectedBuyRect.height);
 			g.setFont(new Font("Arial", Font.BOLD, 15));
-			g.drawString("Buy land: 100 Gold", selectedBuyRect.x + 10, selectedBuyRect.y + 20);
+			g.drawString("Buy land: 100 Gold", selectedBuyRect.x + 10 + mapXOffset, selectedBuyRect.y + 20 + mapYOffset);
 			g.drawRect(mapXOffset + selectedBuyTile.mapX, mapYOffset + selectedBuyTile.mapY, Tile.SIZE, Tile.SIZE);
 		}
 	}

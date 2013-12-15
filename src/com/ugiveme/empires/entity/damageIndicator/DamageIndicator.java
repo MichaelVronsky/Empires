@@ -24,7 +24,7 @@ public class DamageIndicator extends Entity{
 		super(map, x, y, 0, 0);
 		
 		this.number = number;
-		this.numSize = 25;
+		this.numSize = 35;
 		
 		this.color = color;
 		
@@ -38,7 +38,7 @@ public class DamageIndicator extends Entity{
 	}
 	
 	public void tick() {
-		opacity -= 0.8;
+		opacity -= 0.4;
 		numSize -= 0.1;
 		y -= 1;
 		
@@ -51,7 +51,8 @@ public class DamageIndicator extends Entity{
 	public void render(Graphics g) {
 		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) opacity));
 		g.setFont(new Font("Arial", Font.BOLD, (int) numSize));
-		g.drawString(number, (int) x, (int) y);
+		g.drawString(number, (int) x + map.mapXOffset - 10, (int) y + map.mapYOffset);
+		System.out.println("rendered");
 	}
 
 }

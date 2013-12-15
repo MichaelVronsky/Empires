@@ -24,6 +24,8 @@ public class DamageIndicatorHandler {
 	
 	public void addDamageIndicator(int x, int y, String number, Color color) {
 		damageIndicators.add(new DamageIndicator(map, x, y, number, color));
+		
+		System.out.println("damaged");
 	}
 	
 	public void tick() {
