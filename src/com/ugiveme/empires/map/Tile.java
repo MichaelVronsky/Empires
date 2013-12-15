@@ -54,7 +54,7 @@ public abstract class Tile implements Inventory{
 		
 		this.inventory = new HashMap<Integer, ItemGroup>(0);
 		
-		if (Math.random() < 0.005) {
+		if (Math.random() < 0.002) {
 			GameScreen.addMob(new Zombie(map, mapX, mapY));
 		}
 	}

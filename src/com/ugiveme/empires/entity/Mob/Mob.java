@@ -13,6 +13,7 @@ public abstract class Mob extends Entity{
 	
 	public double speed;
 	
+	private int totalHealth;
 	private int health;
 	
 	private boolean dead;
@@ -21,7 +22,10 @@ public abstract class Mob extends Entity{
 		super(map, x, y, width, height);
 		
 		this.image = image;
+		
+		this.totalHealth = health;
 		this.health = health;
+		
 		this.dead = false;
 	}
 	
@@ -57,6 +61,10 @@ public abstract class Mob extends Entity{
 
 	public boolean isDead() {
 		return dead;
+	}
+	
+	public int getTotalHealth() {
+		return totalHealth;
 	}
 	
 	

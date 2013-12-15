@@ -3,6 +3,7 @@ package com.ugiveme.graphicsengine;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -107,6 +108,7 @@ public abstract class Game extends JPanel implements Runnable{
 		}
 		
 		g.setColor(Color.BLACK);
+		g.setFont(new Font("Arial", Font.BOLD, 15));
 		g.drawString("FPS: " + fps, 20, 20);
 		g.drawString("Head space used (in megabytes): " + ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/1000000), 20, 40);
 	}

@@ -3,25 +3,28 @@ package com.ugiveme.empires.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.ugiveme.empires.entity.Mob.Mob;
-import com.ugiveme.empires.entity.Mob.Zombie;
 import com.ugiveme.empires.entity.damageIndicator.DamageIndicatorHandler;
 import com.ugiveme.empires.map.Map;
 import com.ugiveme.empires.map.Player;
+import com.ugiveme.empires.statusBar.StatusBar;
 import com.ugiveme.graphicsengine.KeyHandler;
 import com.ugiveme.graphicsengine.Screen;
 
 public class GameScreen extends Screen{
 
+	public static int gold = 100;
+	
 	private static Map map;
 	
 	private static ArrayList<Mob> mobs;
 	private static Player player;
 	
 	private static DamageIndicatorHandler dIH;
+	
+	private static StatusBar statusBar;
 	
 	public GameScreen(KeyHandler keyHandler) {
 		mobs = new ArrayList<Mob>();
@@ -33,6 +36,8 @@ public class GameScreen extends Screen{
 		mobs.add(player);
 		
 		dIH = new DamageIndicatorHandler(map);
+		
+		statusBar = new StatusBar(player);
 	}
 	
 	@Override
@@ -50,8 +55,11 @@ public class GameScreen extends Screen{
 				mobs.remove(i);
 			}
 		}
+		
 		map.tick();
 		dIH.tick();
+		
+		statusBar.tick();
 	}
 
 	@Override
@@ -64,6 +72,8 @@ public class GameScreen extends Screen{
 		}
 		
 		dIH.render(g);
+		
+		statusBar.render(g);
 		
 	}
 
