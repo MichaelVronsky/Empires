@@ -14,8 +14,9 @@ public class GameScreen extends Screen{
 	private Player player;
 	
 	public GameScreen(KeyHandler keyHandler) {
-		player = new Player(keyHandler);
 		map = new Map(keyHandler);
+		player = new Player(map, keyHandler);
+		
 	}
 	
 	@Override
