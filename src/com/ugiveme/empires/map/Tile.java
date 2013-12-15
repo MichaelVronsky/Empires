@@ -7,9 +7,11 @@ import java.awt.Point;
 import java.util.HashMap;
 
 import com.ugiveme.empires.entity.Entity;
+import com.ugiveme.empires.entity.Mob.Zombie;
 import com.ugiveme.empires.inventory.Inventory;
 import com.ugiveme.empires.item.ItemGroup;
 import com.ugiveme.empires.item.ItemRock;
+import com.ugiveme.empires.main.GameScreen;
 import com.ugiveme.empires.map.tile.FarmLand;
 import com.ugiveme.empires.map.tile.Flowers;
 import com.ugiveme.empires.map.tile.Grass;
@@ -51,8 +53,9 @@ public abstract class Tile implements Inventory{
 		this.map = map;
 		
 		this.inventory = new HashMap<Integer, ItemGroup>(0);
-		if (Math.random() < 0.1) {
-			this.inventory.put(0, new ItemGroup(map, new ItemRock(0), 1));
+		
+		if (Math.random() < 0.005) {
+			GameScreen.addMob(new Zombie(map, mapX, mapY));
 		}
 	}
 	

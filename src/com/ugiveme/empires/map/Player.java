@@ -3,7 +3,7 @@ package com.ugiveme.empires.map;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import com.ugiveme.empires.entity.Mob;
+import com.ugiveme.empires.entity.Mob.Mob;
 import com.ugiveme.graphicsengine.Game;
 import com.ugiveme.graphicsengine.KeyHandler;
 import com.ugiveme.graphicsengine.spritesheet.SpriteSheet;
@@ -20,15 +20,12 @@ public class Player extends Mob{
 	public static final String LEFTKEY = "a";
 	public static final String RIGHTKEY = "d";
 	
-	public static double x = 0;
-	public static double y = 0;
-	
 	private KeyHandler keyHandler;
 	
 	private double speed;
 	
 	public Player(Map map, KeyHandler keyHandler) {
-		super(map, PLAYERIMAGE, 0, 0, 0, 0);
+		super(map, PLAYERIMAGE, 20, 0, 0, PLAYERIMAGE.getWidth(null), PLAYERIMAGE.getHeight(null));
 		this.keyHandler = keyHandler;
 		
 		speed = 10;
@@ -36,6 +33,16 @@ public class Player extends Mob{
 	
 	public void tick() {
 		
+		
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		g.drawImage(PLAYERIMAGE, XOFFSET, YOFFSET, null);
+	}
+
+	@Override
+	public void move() {
 		if (keyHandler.isPressed(UPKEY)) {
 			y -= speed;
 		}
@@ -48,17 +55,6 @@ public class Player extends Mob{
 		if (keyHandler.isPressed(RIGHTKEY)) {
 			x += speed;
 		}
-	}
-	
-	@Override
-	public void render(Graphics g) {
-		g.drawImage(PLAYERIMAGE, XOFFSET, YOFFSET, null);
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

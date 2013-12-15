@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import com.ugiveme.empires.main.GameScreen;
 import com.ugiveme.empires.map.tile.FarmLand;
 import com.ugiveme.empires.map.tile.Grass;
 import com.ugiveme.graphicsengine.Game;
@@ -39,9 +40,12 @@ public class Map {
 	public Rectangle selectedBuyRect;
 	public boolean mouseOverSBR;
 	
-	public Map(KeyHandler keyHandler) {
+	public Player player;
+	
+	public Map(KeyHandler keyHandler, Player player) {
 		
 		this.keyHandler = keyHandler;
+		this.player = player;
 		
 		tiles = new ArrayList<ArrayList<Tile>>();
 		
@@ -70,8 +74,8 @@ public class Map {
 	
 	public void tick() {
 		
-		mapXOffset = SCREENXOFFSET - (int) Player.x;
-		mapYOffset = SCREENYOFFSET - (int) Player.y;
+		mapXOffset = SCREENXOFFSET - (int) player.x;
+		mapYOffset = SCREENYOFFSET - (int) player.y;
 		
 		//Adds a row on top
 		if (firstTileXOffset + mapXOffset + Tile.SIZE > 0) {System.out.println("xM - New Array Length: " + (tiles.size()+1));
@@ -132,7 +136,7 @@ public class Map {
 		} else {
 			//if it is not, a tile is selected which the mouse is over
 			try { //it is surrounded by try/catch just in case, especially in the beginning where the tiles are getting generated
-				selectedTile = tiles.get((keyHandler.getMousePos().x - firstTileXOffset - SCREENXOFFSET + (int)Player.x)/Tile.SIZE).get((keyHandler.getMousePos().y - firstTileYOffset - SCREENYOFFSET + (int)Player.y)/Tile.SIZE);
+				selectedTile = tiles.get((keyHandler.getMousePos().x - firstTileXOffset - SCREENXOFFSET + (int)player.x)/Tile.SIZE).get((keyHandler.getMousePos().y - firstTileYOffset - SCREENYOFFSET + (int)player.y)/Tile.SIZE);
 			} catch(Exception e) {}
 		}
 		
@@ -146,7 +150,7 @@ public class Map {
 				mouseOverSBR = false;
 			} else {
 			
-				selectedTile = tiles.get((keyHandler.getMouseClickPoint().x - firstTileXOffset - SCREENXOFFSET + (int)Player.x)/Tile.SIZE).get((keyHandler.getMouseClickPoint().y - firstTileYOffset - SCREENYOFFSET + (int)Player.y)/Tile.SIZE);
+				selectedTile = tiles.get((keyHandler.getMouseClickPoint().x - firstTileXOffset - SCREENXOFFSET + (int)player.x)/Tile.SIZE).get((keyHandler.getMouseClickPoint().y - firstTileYOffset - SCREENYOFFSET + (int)player.y)/Tile.SIZE);
 	
 				//temporarily, if you click on an owned tile, it turns into farmland
 				if (selectedTile.isOwned()) {
@@ -183,7 +187,7 @@ public class Map {
 		//renders all the tiles on your screen (otherwise, you get EXTREMELY slow FPS)
 		for (ArrayList<Tile> tileList : tiles) {
 			for (Tile tile : tileList) {
-				if (tile.mapX > Player.x - SCREENXOFFSET - Tile.SIZE && tile.mapX < Player.x + SCREENXOFFSET && tile.mapY > Player.y - SCREENYOFFSET - Tile.SIZE && tile.mapY < Player.y + SCREENYOFFSET) {
+				if (tile.mapX > player.x - SCREENXOFFSET - Tile.SIZE && tile.mapX < player.x + SCREENXOFFSET && tile.mapY > player.y - SCREENYOFFSET - Tile.SIZE && tile.mapY < player.y + SCREENYOFFSET) {
 					tile.render(g);
 				}
 			}

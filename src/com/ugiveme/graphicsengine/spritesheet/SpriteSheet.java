@@ -41,4 +41,9 @@ public class SpriteSheet {
 		return loadImage(url, x, y, width, height).getScaledInstance(width*scale, height*scale, BufferedImage.SCALE_DEFAULT);
 		
 	}
+	
+	public static Image loadImage(String url, int scale) {
+		Image image = loadImage(url);
+		return image.getScaledInstance(image.getWidth(null)*scale, image.getHeight(null)*scale, BufferedImage.SCALE_DEFAULT);
+	}
 }
