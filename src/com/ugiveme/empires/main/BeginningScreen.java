@@ -51,7 +51,6 @@ public class BeginningScreen extends Screen{
 		g.setFont(new Font("Arial", Font.BOLD, 60));
 		g.drawString(STARTTEXT, STARTRECT.x + STARTRECT.width/2 - STARTTEXT.length()*20, STARTRECT.y + 60);
 		
-		g.setColor(new Color((int) Math.floor(Math.random()*255), (int) Math.floor(Math.random()*255), (int) Math.floor(Math.random()*255)));
 		g.setFont(new Font("Arial", Font.BOLD, 200));
 		g.drawString("EMPIRES!!!", 100, 300);
 	}
