@@ -15,8 +15,8 @@ public class Player extends Mob{
 	public static final int PLAYERWIDTH = PLAYERTILESET[0][0].getWidth(null);
 	public static final int PLAYERHEIGHT = PLAYERTILESET[0][0].getHeight(null);
 	
-	public static final int XOFFSET = Game.size.width/2 - PLAYERWIDTH/2;
-	public static final int YOFFSET = Game.size.height/2 - PLAYERHEIGHT/2;
+	public static int XOFFSET = Game.size.width/2 - PLAYERWIDTH/2;
+	public static int YOFFSET = Game.size.height/2 - PLAYERHEIGHT/2;
 	
 	public static final String UPKEY = "w";
 	public static final String DOWNKEY = "s";
@@ -58,8 +58,8 @@ public class Player extends Mob{
 	}
 	
 	public void tick() {
-		
-		
+		XOFFSET = Game.size.width/2 - PLAYERWIDTH/2;
+		YOFFSET = Game.size.height/2 - PLAYERHEIGHT/2;
 	}
 	
 	@Override

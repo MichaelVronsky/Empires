@@ -17,7 +17,7 @@ public abstract class Game extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
 	public static final String title = "Game";
-	public static final Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+	public static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	public static Thread gameLoop;
 	public static Game game;
@@ -40,7 +40,7 @@ public abstract class Game extends JPanel implements Runnable{
 		
 		frame.setTitle(title);
 		frame.setSize(size);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setUndecorated(true);
@@ -97,6 +97,7 @@ public abstract class Game extends JPanel implements Runnable{
 	
 	public synchronized void tick() {
 		screens.get(renderIndex).tick();
+		size = frame.getSize();
 	}
 	
 	public synchronized void paintComponent(Graphics g) {

@@ -14,6 +14,8 @@ public class EmpiresGame extends Game{
 		addScreen(new GameScreen(keyHandler));
 		addScreen(new RespawnScreen(keyHandler));
 		
+		frame.setResizable(true);
+		
 		start();
 	}
 
