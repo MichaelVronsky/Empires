@@ -3,7 +3,7 @@ package com.ugiveme.empires.map;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import com.ugiveme.empires.entity.Mob.Mob;
+import com.ugiveme.empires.entity.mob.Mob;
 import com.ugiveme.graphicsengine.Game;
 import com.ugiveme.graphicsengine.KeyHandler;
 import com.ugiveme.graphicsengine.spritesheet.SpriteSheet;

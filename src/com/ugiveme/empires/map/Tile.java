@@ -7,7 +7,7 @@ import java.awt.Point;
 import java.util.HashMap;
 
 import com.ugiveme.empires.entity.Entity;
-import com.ugiveme.empires.entity.Mob.Zombie;
+import com.ugiveme.empires.entity.mob.Zombie;
 import com.ugiveme.empires.inventory.Inventory;
 import com.ugiveme.empires.item.ItemGroup;
 import com.ugiveme.empires.item.ItemRock;

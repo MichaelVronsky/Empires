@@ -1,4 +1,4 @@
-package com.ugiveme.empires.entity.Mob;
+package com.ugiveme.empires.entity.mob;
 
 import java.awt.Image;
 

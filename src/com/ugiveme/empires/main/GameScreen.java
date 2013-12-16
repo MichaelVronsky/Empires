@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import com.ugiveme.empires.entity.Mob.Mob;
+import com.ugiveme.empires.entity.mob.Mob;
 import com.ugiveme.empires.entity.damageIndicator.DamageIndicatorHandler;
 import com.ugiveme.empires.map.Map;
 import com.ugiveme.empires.map.Player;
@@ -52,7 +52,15 @@ public class GameScreen extends Screen{
 			mobs.get(i).move();
 			mobs.get(i).tick();
 			if (mobs.get(i).isDead()) {
-				mobs.remove(i);
+				if (mobs.get(i).equals(player)) {
+					player.setHealth(player.getTotalHealth());
+					player.setDead(false);
+					player.x = 0;
+					player.y = 0;
+					EmpiresGame.setScreenRenderIndex(EmpiresGame.RESPAWNSCREEN);
+				} else {
+					mobs.remove(i);
+				}
 			}
 		}
 		

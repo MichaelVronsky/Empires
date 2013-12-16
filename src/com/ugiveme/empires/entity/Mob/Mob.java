@@ -1,4 +1,4 @@
-package com.ugiveme.empires.entity.Mob;
+package com.ugiveme.empires.entity.mob;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -61,6 +61,14 @@ public abstract class Mob extends Entity{
 
 	public boolean isDead() {
 		return dead;
+	}
+	
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
+	
+	public void setHealth(int health) {
+		this.health = health > totalHealth ? totalHealth : health;
 	}
 	
 	public int getTotalHealth() {
